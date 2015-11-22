@@ -7,6 +7,9 @@ Tips using this application
 4)There are 4 Main tabs present
 		
 	a) Call que tab shows the data of a person obtained from json file and when the name of the person is clicked his pervious problem and treatment done is shown
+
 	b)Email queuejust shows person email address and phone number obtained from json file
+
 	c) Set follow up tab shows the error message if the message is not posted and handling $http error
+
 	d) View draggable show how the two input elements can be dragged and placed in different position
