@@ -1,0 +1,23 @@
+<h2 class="text-center">{{message}}</h2>
+<hr />
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Phone</th>
+                <th>Time</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr ng-repeat='row in rows'>
+                <td><a href="#about/{{row.name}}">{{row.name}}</a></td>
+                <td>{{ row.phone}}</td>
+                <td>{{row.time}} </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<hr />

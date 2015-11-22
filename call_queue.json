@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Andy",
+    "phone": "9887544741",
+    "time": "2:30 PM",
+    "email":"andy@123.com",
+    "details": {
+      "problems": "His tooth was worn out",
+      "solution": "Tooth removed as it was root canal"
+    }
+  },
+  {
+    "name": "Rob",
+    "phone": "7187544241",
+    "time": "4:30 PM",
+    "email":"Rob@123.com",
+    "details": {
+      "problems": "Had a stomach ache because of food poison",
+      "solution": "Had admitted for a day and was in drugs"
+    }
+  },
+  {
+    "name": "Bob",
+    "phone": "9877244785",
+    "time": "6:30 PM",
+    "email":"Bob@123.com",
+    "details": {
+      "problems": "Had a viral fever ",
+      "solution": "Admitted for a day and had drips inserted"
+    }
+  }
+]
