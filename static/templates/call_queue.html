@@ -1,4 +1,5 @@
 <h2 class="text-center">{{message}}</h2>
+
 <hr />
 <div class="col-md-6">
     <table class="table table-striped">
@@ -8,35 +9,31 @@
                 <th>Phone</th>
                 <th>Time</th>
             </tr>
-
-        </thead>  
+        </thead>
         <tbody>
             <tr ng-repeat='row in rows'>
-                <td data-toggle="modal" data-target="#myModal" ng-modal="mo" ng-click="setName(row.name)"> <a>{{row.name}}</a></td>
+                <td data-toggle="modal" data-target="#myModal" ng-modal="mo" ng-click="setName(row.name)"> <a>{{row.name}}</a>
+                </td>
                 <td>{{ row.phone}}</td>
-                <td>{{row.time}} </td>
+                <td>{{row.time}}</td>
             </tr>
         </tbody>
     </table>
 </div>
-<div class="col-md-6" >
-        <table class="table table-bordered" ng-show="checkSomething()">
-                    <thead >
-                      <tr>
-                        <th class="text-center">Problem</th>
-                        <th class="text-center">Treatment</th>
-
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="text-center">{{selected_problem}}</td>
-                        <td class="text-center">{{selected_treatment}}</td>
- 
-                      </tr>
-    
-                    </tbody>
-                  </table>
-
+<div class="col-md-6">
+    <table class="table table-bordered" ng-show="checkSomething()">
+        <thead>
+            <tr>
+                <th class="text-center">Problem</th>
+                <th class="text-center">Treatment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">{{selected_problem}}</td>
+                <td class="text-center">{{selected_treatment}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <hr />
