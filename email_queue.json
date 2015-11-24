@@ -1,6 +1,6 @@
 [
   {
-    "name": "abc",
+    "name": "ABC",
     "phone": "9887544741",
     "time": "2:30 PM",
     "email":"andy@123.com",
@@ -10,7 +10,7 @@
     }
   },
   {
-    "name": "xyz",
+    "name": "XYZ",
     "phone": "7187544241",
     "time": "4:30 PM",
     "email":"Rob@123.com",

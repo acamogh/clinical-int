@@ -72,7 +72,8 @@ sampleApp.directive('draggable', function($document) {
             display: 'block',
             color: 'black',
             width: '150px',
-            height: '50px'
+            height: '50px',
+            margin: '1%'
 
         });
 
