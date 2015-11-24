@@ -127,8 +127,9 @@ sampleApp.controller('call_queue_ctrl', function($scope, $http) {
                     if ($scope.rows[i].name == $scope.selectedName) {
                         $scope.selected_problem = $scope.rows[i].details.problems
                         $scope.selected_treatment = $scope.rows[i].details.solution
-                        console.log($scope.selected_problem)
-                        console.log($scope.selected_treatment)
+                        $scope.selected_name = $scope.rows[i].name
+                        console.log($scope.selected_name)
+                        
                         $scope.checkSomething = function(){
                           return true
                         }
