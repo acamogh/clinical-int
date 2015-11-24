@@ -1,20 +1,60 @@
 <h2 class="text-center">{{message}}</h2>
-<hr /> 
-<table class="table table-striped">
+<hr />
+<div class="container">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Firstname</th>
-                <th>Email</th>
+                <th>email</th>
                 <th>Time</th>
             </tr>
 
-        </thead>
+        </thead>  
         <tbody>
             <tr ng-repeat='row in rows'>
-                <td><a href="#about/{{row.name}}">{{row.name}}</a></td>
+                <td data-toggle="modal" data-target="#myModal" ng-modal="mo" ng-click="setName(row.name)"> <a>{{row.name}}</a></td>
                 <td>{{ row.email}}</td>
                 <td>{{row.time}} </td>
             </tr>
-
         </tbody>
     </table>
+    
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"> {{selectedName}} Details</h4>
+              </div>
+              <div class="modal-body">
+
+
+                <table class="table table-bordered">
+                    <thead >
+                      <tr>
+                        <th class="text-center">Problem</th>
+                        <th class="text-center">Treatment</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-center">{{selected_problem}}</td>
+                        <td class="text-center">{{selected_treatment}}</td>
+ 
+                      </tr>
+    
+                    </tbody>
+                  </table>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+</div>
+<hr />
