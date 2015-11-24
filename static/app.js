@@ -129,6 +129,9 @@ sampleApp.controller('call_queue_ctrl', function($scope, $http) {
                         $scope.selected_treatment = $scope.rows[i].details.solution
                         console.log($scope.selected_problem)
                         console.log($scope.selected_treatment)
+                        $scope.checkSomething = function(){
+                          return true
+                        }
                     }
                 }
 
@@ -143,7 +146,7 @@ sampleApp.controller('call_queue_ctrl', function($scope, $http) {
 
 
 sampleApp.controller('email_queue_ctrl', function($scope, $http) {
-    $scope.message = 'Call Queue';
+    $scope.message = 'Email Queue';
     $http.get('email_queue.json')
         .success(function(response) {
             $scope.rows = response
