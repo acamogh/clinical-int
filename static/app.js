@@ -66,11 +66,11 @@ sampleApp.directive('draggable', function($document) {
             y = 0;
         element.css({
             position: 'relative',
-            border: '1px solid red',
-            backgroundColor: '#eee',
+            // border: '1px solid red',
+            // backgroundColor: '#eee',
             cursor: 'move',
             display: 'block',
-            color: 'black',
+            // color: 'black',
             width: '150px',
             height: '50px',
             margin: '1%'
@@ -115,11 +115,21 @@ sampleApp.directive('draggable', function($document) {
 // }]);
 
 
-sampleApp.controller('call_queue_ctrl', function($scope, $http) {
+sampleApp.controller('call_queue_ctrl', function($scope, $http, myData) {
+    $scope.submit = function() {
+        console.log($scope.follow_up)
+        $http.post("/json", $scope.follow_up)
+            .success(function(submitJson, status) {
+
+            })
+            .error(function(err) {
+                $scope.errormsg = 'unable to set followup. please try again later'
+            })
+    }
     $scope.message = 'Call Queue';
-    $http.get('call_queue.json')
-        .success(function(response) {
-            $scope.rows = response
+    myData.get().then (function (data) {
+//             $scope.rows = data;//this is fine
+            $scope.rows = data
                 // console.log($scope.rows[0].name)
             $scope.setName = function(name) {
                 $scope.selectedName = name;
@@ -210,3 +220,4 @@ sampleApp.controller('Draggable_ctrl', function($scope) {
 
 
 });
+
