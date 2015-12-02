@@ -1,5 +1,40 @@
 //Define an angular module for our app
 var sampleApp = angular.module('sampleApp', []);
+sampleApp.directive('datepicker', function() {
+         return {
+            restrict: 'A',
+            require: 'ngModel',
+            compile: function() {
+               return {
+                  pre: function(scope, element, attrs, ngModelCtrl) {
+                     var format, dateObj;
+                     format = (!attrs.dpFormat) ? 'd/m/yyyy' : attrs.dpFormat;
+                     if (!attrs.initDate && !attrs.dpFormat) {
+                        // If there is no initDate attribute than we will get todays date as the default
+                        dateObj = new Date();
+                        scope[attrs.ngModel] = dateObj.getDate() + '/' + (dateObj.getMonth() + 1) + '/' + dateObj.getFullYear();
+                     } else if (!attrs.initDate) {
+                        // Otherwise set as the init date
+                        scope[attrs.ngModel] = attrs.initDate;
+                     } else {
+                        // I could put some complex logic that changes the order of the date string I
+                        // create from the dateObj based on the format, but I'll leave that for now
+                        // Or I could switch case and limit the types of formats...
+                     }
+                     // Initialize the date-picker
+                     $(element).datepicker({
+                        format: format,
+                     }).on('changeDate', function(ev) {
+                        // To me this looks cleaner than adding $apply(); after everything.
+                        scope.$apply(function () {
+                           ngModelCtrl.$setViewValue(ev.format(format));
+                        });
+                     });
+                  }
+               }
+            }
+         }
+      });
 
 
 sampleApp.config(['$routeProvider',
@@ -35,22 +70,22 @@ sampleApp.config(['$routeProvider',
     }
 ]);
 
-sampleApp.directive('navCollapse', function () {
+sampleApp.directive('navCollapse', function() {
     return {
         restrict: 'A',
-        link: function (scope, element, attrs) {
+        link: function(scope, element, attrs) {
             var visible = false;
 
-            element.on('show.bs.collapse', function () {
+            element.on('show.bs.collapse', function() {
                 visible = true;
             });
 
-            element.on("hide.bs.collapse", function () {
+            element.on("hide.bs.collapse", function() {
                 visible = false;
             });
 
-            element.on('click', function (event) {
-                if (visible && 'auto' == element.css('overflow-y') && $(event.target).attr('data-toggle')!="dropdown") {
+            element.on('click', function(event) {
+                if (visible && 'auto' == element.css('overflow-y') && $(event.target).attr('data-toggle') != "dropdown") {
                     element.collapse('hide');
                 }
             });
@@ -104,6 +139,8 @@ sampleApp.directive('draggable', function($document) {
 
 
 
+
+
 // sampleApp.factory('myData', ['$http', function($http) {
 //   return {
 //     get: function() {
@@ -116,6 +153,9 @@ sampleApp.directive('draggable', function($document) {
 
 
 sampleApp.controller('call_queue_ctrl', function($scope, $http, myData) {
+
+
+    // **** form *****
     $scope.submit = function() {
         console.log($scope.follow_up)
         $http.post("/json", $scope.follow_up)
@@ -126,30 +166,32 @@ sampleApp.controller('call_queue_ctrl', function($scope, $http, myData) {
                 $scope.errormsg = 'unable to set followup. please try again later'
             })
     }
+
+    // ****  treatment  **********
     $scope.message = 'Call Queue';
-    myData.get().then (function (data) {
-//             $scope.rows = data;//this is fine
-            $scope.rows = data
-                // console.log($scope.rows[0].name)
-            $scope.setName = function(name) {
-                $scope.selectedName = name;
-                for (i = 0; i < $scope.rows.length; i++) {
-                    if ($scope.rows[i].name == $scope.selectedName) {
-                        $scope.selected_problem = $scope.rows[i].details.problems
-                        $scope.selected_treatment = $scope.rows[i].details.solution
-                        $scope.selected_name = $scope.rows[i].name
-                        console.log($scope.selected_name)
-                        
-                        $scope.checkSomething = function(){
-                          return true
-                        }
+    myData.get().then(function(data) {       
+        $scope.rows = data
+          
+        $scope.setName = function(name) {
+            $scope.selectedName = name;
+            for (i = 0; i < $scope.rows.length; i++) {
+                if ($scope.rows[i].name == $scope.selectedName) {
+                    $scope.selected_problem = $scope.rows[i].details.problems
+                    $scope.selected_treatment = $scope.rows[i].details.solution
+                    $scope.selected_name = $scope.rows[i].name
+                    console.log($scope.selected_name)
+
+                    $scope.checkSomething = function() {
+                        return true
                     }
                 }
-
-
             }
 
-        });
+
+        }
+        
+
+    });
 
 
 });
@@ -220,4 +262,3 @@ sampleApp.controller('Draggable_ctrl', function($scope) {
 
 
 });
-
